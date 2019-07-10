@@ -1,0 +1,183 @@
+typescript is the superset of javascript.
+
+strong typing
+objected-oriented features
+compile-time errors
+great tools
+
+typescript ->transpile-> javascript, browser can understand
+
+npm install -g typescript
+tsc --version (typescript compiler)
+mkdir ts-hello
+cd ts-hello
+code main.ts
+
+function log(message){
+   console.log(message);
+}
+var message = "hello world";
+log(message);
+
+tsc main.ts
+ng serve
+
+code main.js
+node main.js
+
+
+2 ways to declare a variable
+var number = 1;
+let count = 2;
+function do(){
+	for(var i=0; i<5; i++){
+		console.log(i);   
+ 	}
+	console.log('Finally:' + i);
+}
+do();
+declare a variable inside the block, but it's also meaningful outside the block.
+var is scoped to the nearest function.
+let is scoped to the nearest block.
+typescript compiler reports the errors but still generates valid js code.
+
+
+
+let a : number;
+let b : boolean;
+let c : string;
+let d : any;
+let e : number[] = [1,2,3];
+let f : any[] = [1, true, 'a'];
+
+enum Color{Red, Blue=3}; //Red=0
+let backgroundColor = Color.Red;
+
+let message;
+message = 'abc';
+let endsWithC = message.endsWith('c');
+When we don't set the value, the variable is any type. We lose intellisense here. 
+Type Assertion is to help the compiler to show the intellisense.
+let endsWithC = (<string>message).endsWith('c');
+let endsWithC2 = (message as string).endsWith('c');
+
+JS:
+const ColorRed = 0;
+const ColorBlue = 1;
+
+
+arrow function:
+js:
+let log = function(message){
+	console.log(message);
+}
+
+ts:
+let doLog = (message) => {
+	console.log(message);
+}
+let doLog = (message) => console.log(message);
+let doLog = () => console.log();
+
+custom type:
+in-line annotation
+point {x:number, y:number}
+
+interface should be capitalized.
+interface Point{
+x : number; // here should be ,
+y : number; // here should be ,
+draw:()=>void
+}
+
+let drawPoint = (point:Point) => {}
+drawPoint({x:1,y:1})
+
+let getDistance = (pointA: Point, pointB: Point) => {}
+
+cohesion
+
+class groups properties and functions that are highly related.
+interface is purely for declarations, they can't include the implementations.
+
+class Point{
+x : number;  //field
+y : number;
+constructor(x:number, y:number){
+this.x = x;
+this.y = y;
+}
+draw(){
+	console.log();
+}
+getDistance(another: Point){}
+}
+
+let point:Point = new Point();
+let point = new Point();
+point.x = 1;
+point.y = 2;
+point.draw();
+
+object is an instance of class.
+
+tsc main.ts | node.js main.js
+
+constructor: We call when we create an instance of the class
+let point = new Point(1,2);
+In typescript, only 1 constructor is allowed.
+Make parameters optional.
+private x: number;
+private y: number;
+constructor(x?:number, y?:number){ //x and y both should be optional.
+this.x = x;
+this.y = y;
+}
+
+constructor(private x?:number, private y?:number){}
+
+how to avoid change the value after it's initialized?
+access modifier is the keyword we can apply to a member of a class to control the access from the outside:
+public:by default
+private:
+protected
+
+After making the field private, how to access it outside?
+getX(){                  get X(){return this.x;}
+return this.x;
+}
+setX(value){          set X(value)
+if(value < 0) throw new Error('Wrong');
+this.x = value;
+}
+
+let x = point.getX();
+after properties, let x = point.X; point.X = 10;
+
+field:x,y
+property:setter, getter. they are method. _x, get x(), set x();
+
+modules:
+each file as a module.
+export class Point.
+
+import { Point, a, b} from './point' //related path, not ./point.ts
+
+divide the program to multiple files, each file can export types like classes, functions.
+when we want to use them, we need to import first.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

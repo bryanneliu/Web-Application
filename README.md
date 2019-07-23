@@ -1,2 +1,3 @@
 # WebApplication
- practice on Angularjs, typescript, html and css.
+ 1. Angularjs, typescript, html and css
+ 2. Http protocal
